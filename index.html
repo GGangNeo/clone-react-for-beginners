@@ -18,30 +18,26 @@
   <!-- Your custom script here -->
   <script type="text/babel">
     const root = document.getElementById('root');
-    function Title() {
-      return (
-        <h3 id="h3" onMouseEnter={() => console.log('mouse enter')}>
-          {' '}
-          Hello I am Title!!
-        </h3>
-      );
-    }
+    let cnt = 0;
 
-    const Btn = () => (
-      <button id="btn" onClick={() => console.log('mouse click')}>
-        {' '}
-        Hello I am Button!
-      </button>
-    );
+    const render = () => {
+      ReactDOM.render(<Container />, root);
+    };
 
-    // const container = React.createElement('div', null, [Title, btn]);
-    // ReactDOM.render(container, root);
     const Container = () => (
       <div>
-        <Title />,
-        <Btn />
+        <h3> Click counter : {cnt}</h3>
+        <button
+          onClick={() => {
+            cnt++;
+            render();
+          }}
+        >
+          {' '}
+          Button{' '}
+        </button>
       </div>
     );
-    ReactDOM.render(<Container />, root);
+    render();
   </script>
 </html>
