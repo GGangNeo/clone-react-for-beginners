@@ -18,26 +18,21 @@
   <!-- Your custom script here -->
   <script type="text/babel">
     const root = document.getElementById('root');
-    let cnt = 0;
 
-    const render = () => {
-      ReactDOM.render(<Container />, root);
+    const Container = () => {
+      // const data = React.useState(0);
+      // console.log(data);
+      const [count, setCount] = React.useState(0);
+      const countUp = () => {
+        setCount(count + 1);
+      };
+      return (
+        <div>
+          <h3> Click counter : {count}</h3>
+          <button onClick={countUp}> Button </button>
+        </div>
+      );
     };
-
-    const Container = () => (
-      <div>
-        <h3> Click counter : {cnt}</h3>
-        <button
-          onClick={() => {
-            cnt++;
-            render();
-          }}
-        >
-          {' '}
-          Button{' '}
-        </button>
-      </div>
-    );
-    render();
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
