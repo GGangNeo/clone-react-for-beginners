@@ -24,7 +24,8 @@
       // console.log(data);
       const [count, setCount] = React.useState(0);
       const countUp = () => {
-        setCount(count + 1);
+        // setCount(count + 1);
+        setCount((currnet) => currnet + 1); // get current state and set state, best practice
       };
       return (
         <div>
