@@ -18,40 +18,30 @@
   <!-- Your custom script here -->
   <script type="text/babel">
     const root = document.getElementById('root');
-    const Title = (
-      <h3 id="h3" onMouseEnter={() => console.log('mouse enter')}>
-        {' '}
-        Hello I am Title!!
-      </h3>
-    );
+    function Title() {
+      return (
+        <h3 id="h3" onMouseEnter={() => console.log('mouse enter')}>
+          {' '}
+          Hello I am Title!!
+        </h3>
+      );
+    }
 
-    // const Title = React.createElement(
-    //   'h3',
-    //   {
-    //     id: 'span',
-    //     style: { color: 'red' },
-    //     onMouseEnter: () => console.log('mouse enter'),
-    //   },
-    //   'Title is Span'
-    // );
-    const btn = (
+    const Btn = () => (
       <button id="btn" onClick={() => console.log('mouse click')}>
         {' '}
         Hello I am Button!
       </button>
     );
 
-    // const btn = React.createElement(
-    //   'button',
-    //   {
-    //     id: 'btn',
-    //     style: { backgroundColor: 'tomato' },
-    //     onClick: () => console.log('click mouse'),
-    //   },
-    //   'Button'
-    // );
-
-    const container = React.createElement('div', null, [Title, btn]);
-    ReactDOM.render(container, root);
+    // const container = React.createElement('div', null, [Title, btn]);
+    // ReactDOM.render(container, root);
+    const Container = () => (
+      <div>
+        <Title />,
+        <Btn />
+      </div>
+    );
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
