@@ -13,28 +13,45 @@
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-  <script>
+  <!-- Load Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Your custom script here -->
+  <script type="text/babel">
     const root = document.getElementById('root');
-    const h3 = React.createElement(
-      'h3',
-      {
-        id: 'span',
-        style: { color: 'red' },
-        onMouseEnter: () => console.log('mouse enter'),
-      },
-      'Title is Span'
-    );
-    const btn = React.createElement(
-      'button',
-      {
-        id: 'btn',
-        style: { backgroundColor: 'tomato' },
-        onClick: () => console.log('click mouse'),
-      },
-      'Button'
+    const Title = (
+      <h3 id="h3" onMouseEnter={() => console.log('mouse enter')}>
+        {' '}
+        Hello I am Title!!
+      </h3>
     );
 
-    const container = React.createElement('div', null, [h3, btn]);
+    // const Title = React.createElement(
+    //   'h3',
+    //   {
+    //     id: 'span',
+    //     style: { color: 'red' },
+    //     onMouseEnter: () => console.log('mouse enter'),
+    //   },
+    //   'Title is Span'
+    // );
+    const btn = (
+      <button id="btn" onClick={() => console.log('mouse click')}>
+        {' '}
+        Hello I am Button!
+      </button>
+    );
+
+    // const btn = React.createElement(
+    //   'button',
+    //   {
+    //     id: 'btn',
+    //     style: { backgroundColor: 'tomato' },
+    //     onClick: () => console.log('click mouse'),
+    //   },
+    //   'Button'
+    // );
+
+    const container = React.createElement('div', null, [Title, btn]);
     ReactDOM.render(container, root);
   </script>
 </html>
