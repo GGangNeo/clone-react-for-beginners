@@ -11,8 +11,10 @@
   </body>
   <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+
   <!-- Load Babel -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <!-- Your custom script here -->
@@ -24,7 +26,7 @@
     const onClick2 = () => {
       console.log(`onClick 2`);
     };
-    const Btn = ({ text, fontSize, onClick }) => {
+    const Btn = ({ text, fontSize = 16, onClick }) => {
       console.log(`${text} was created`);
       return (
         <div>
@@ -35,7 +37,7 @@
               padding: '10px 20px',
               border: '0',
               borderRadius: 10,
-              fontSize: parseInt(fontSize),
+              fontSize: fontSize,
             }}
             onClick={onClick}
           >
@@ -47,24 +49,34 @@
       );
     };
 
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+      onClick: PropTypes.func,
+    };
+
     const MemorizedBtn = React.memo(Btn);
+
+    MemorizedBtn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+      onClick: PropTypes.func.isRequired,
+    };
+
     const App = () => {
       const [textBtn, setText] = React.useState('Release');
       const onChange = () => setText('clicked');
       return (
         <div>
           {' '}
-          <Btn text="Btn1" fontSize="16" onClick={onClick}></Btn>
+          <Btn text="Btn1" fontSize={16} onClick={onClick}></Btn>
+          <Btn text="Btn_test" onClick={onClick}></Btn>
           <MemorizedBtn
             text="Btn2"
-            fontSize="18"
+            fontSize={18}
             onClick={onClick2}
           ></MemorizedBtn>
-          <MemorizedBtn
-            text={textBtn}
-            fontSize="18"
-            onClick={onChange}
-          ></MemorizedBtn>
+          <MemorizedBtn text={textBtn} fontSize={16}></MemorizedBtn>
         </div>
       );
     };
