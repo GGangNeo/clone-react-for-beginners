@@ -25,6 +25,7 @@
       console.log(`onClick 2`);
     };
     const Btn = ({ text, fontSize, onClick }) => {
+      console.log(`${text} was created`);
       return (
         <div>
           <button
@@ -46,6 +47,7 @@
       );
     };
 
+    const MemorizedBtn = React.memo(Btn);
     const App = () => {
       const [textBtn, setText] = React.useState('Release');
       const onChange = () => setText('clicked');
@@ -53,8 +55,16 @@
         <div>
           {' '}
           <Btn text="Btn1" fontSize="16" onClick={onClick}></Btn>
-          <Btn text="Btn2" fontSize="18" onClick={onClick2}></Btn>
-          <Btn text={textBtn} fontSize="18" onClick={onChange}></Btn>
+          <MemorizedBtn
+            text="Btn2"
+            fontSize="18"
+            onClick={onClick2}
+          ></MemorizedBtn>
+          <MemorizedBtn
+            text={textBtn}
+            fontSize="18"
+            onClick={onChange}
+          ></MemorizedBtn>
         </div>
       );
     };
