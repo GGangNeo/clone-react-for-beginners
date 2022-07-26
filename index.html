@@ -18,88 +18,43 @@
   <!-- Your custom script here -->
   <script type="text/babel">
     const root = document.getElementById('root');
-
-    const Times = () => {
-      // const data = React.useState(0);
-      // console.log(data);
-      const [inputNum, setValue] = React.useState();
-      const onChange = (event) => setValue(event.target.value);
-      const [flipBool, setFlip] = React.useState(false);
-      const flip = (event) => {
-        reset();
-        setFlip((current) => !current);
-      };
-      const reset = () => setValue(0);
-      const Hour = () => (
-        <div id="hours">
-          <label htmlFor="hour"> Hours </label>
-          <input
-            // disabled="disabled"
-            disabled={flipBool}
-            id="hour"
-            type="number"
-            placeholder="Input Hour"
-            onChange={onChange}
-            value={flipBool ? Math.round(inputNum / 60) : inputNum}
-          ></input>
-        </div>
-      );
-      const Min = () => (
+    const onClick = (event) => {
+      console.log(`onClick 1`);
+    };
+    const onClick2 = () => {
+      console.log(`onClick 2`);
+    };
+    const Btn = ({ text, fontSize, onClick }) => {
+      return (
         <div>
-          <label htmlFor="min"> Minutes </label>
-          <input
-            disabled={!flipBool}
-            id="min"
-            type="number"
-            placeholder="Input Minute"
-            onChange={onChange}
-            value={flipBool ? inputNum : inputNum * 60}
-          ></input>
-        </div>
-      );
-      const Btns = () => (
-        <div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={flip}>
-            {(`Conver to {}`, flipBool ? 'Hour' : 'Minute')}{' '}
+          <button
+            style={{
+              backgroundColor: 'tomato',
+              color: 'white',
+              padding: '10px 20px',
+              border: '0',
+              borderRadius: 10,
+              fontSize: parseInt(fontSize),
+            }}
+            onClick={onClick}
+          >
+            {' '}
+            {text}
+            {''}
           </button>
         </div>
       );
+    };
 
-      return (
-        <div>
-          <h3> Times </h3>
-          <Hour />
-          <Min />
-          <Btns />
-        </div>
-      );
-    };
-    const MgToMmol = () => {
-      return (
-        <div>
-          <h3>Mg to Mmol</h3>
-        </div>
-      );
-    };
     const App = () => {
-      const [index, setIndex] = React.useState();
-      const onChange = (event) => {
-        console.log(event.target.value);
-        setIndex(event.target.value);
-      };
-
+      const [textBtn, setText] = React.useState('Release');
+      const onChange = () => setText('clicked');
       return (
         <div>
-          <h1> Unit Converter </h1>
-          <select value={index} onChange={onChange}>
-            <option value="-1">Select Converter</option>
-            <option value="0"> Hours & Minute </option>
-            <option value="1"> Mg & Mmol</option>
-          </select>
-          <hr />
-          {index === '0' ? <Times /> : null}
-          {index === '1' ? <MgToMmol /> : null}
+          {' '}
+          <Btn text="Btn1" fontSize="16" onClick={onClick}></Btn>
+          <Btn text="Btn2" fontSize="18" onClick={onClick2}></Btn>
+          <Btn text={textBtn} fontSize="18" onClick={onChange}></Btn>
         </div>
       );
     };
